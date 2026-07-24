@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { UserProfile } from '@/schemas/user.schema';
 import { Avatar } from '../atoms/Avatar';
 import { Button } from '../atoms/Button';
@@ -24,20 +25,17 @@ export const ProfileHero: React.FC<ProfileHeroProps> = ({ user }) => {
   return (
     <>
       <section className="glass rounded-xl overflow-hidden relative group">
-        <div
-          className="h-48 w-full relative"
-          style={{
-            background:
-              'linear-gradient(135deg, #5516be 0%, #a078ff 50%, #ee9800 100%)',
-          }}
-        >
-          <div
-            className="absolute inset-0 opacity-20"
-            style={{
-              backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)',
-              backgroundSize: '20px 20px',
-            }}
+        {/* Banner con Next.js Image Component optimizado */}
+        <div className="h-48 w-full relative overflow-hidden bg-[#0f131c]">
+          <Image
+            src="/banner.jpg"
+            alt="Profile Banner"
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 1280px"
+            className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#090D16] via-transparent to-transparent opacity-60" />
         </div>
 
         <div className="px-6 pb-6 flex flex-col items-center text-center md:items-end md:text-left md:flex-row gap-4 -mt-16 relative z-10">
