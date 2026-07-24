@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import React, { useState, useMemo } from 'react';
-import { useUserStore } from '@/store/user.store';
-import { useUserProfile } from '@/hooks/useUserProfile';
-import { useUserRepositories } from '@/hooks/useUserRepositories';
-import { DashboardTemplate } from '@/components/templates/DashboardTemplate';
-import { RepoCard } from '@/components/molecules/RepoCard';
-import { Loader2, AlertCircle, Search, Plus } from 'lucide-react';
-import { Button } from '@/components/atoms/Button';
+import React, { useState, useMemo } from "react";
+import { useUserStore } from "@/store/user.store";
+import { useUserProfile } from "@/hooks/useUserProfile";
+import { useUserRepositories } from "@/hooks/useUserRepositories";
+import { DashboardTemplate } from "@/components/templates/DashboardTemplate";
+import { RepoCard } from "@/components/molecules/RepoCard";
+import { Loader2, AlertCircle, Search, Plus } from "lucide-react";
+import { Button } from "@/components/atoms/Button";
 
 export default function RepositoriesPage() {
   const currentUsername = useUserStore((state) => state.currentUsername);
@@ -22,9 +22,9 @@ export default function RepositoriesPage() {
     refetch,
   } = useUserRepositories(currentUsername);
 
-  const [searchFilter, setSearchFilter] = useState('');
-  const [languageFilter, setLanguageFilter] = useState('All');
-  const [sortOrder, setSortOrder] = useState('Last updated');
+  const [searchFilter, setSearchFilter] = useState("");
+  const [languageFilter, setLanguageFilter] = useState("All");
+  const [sortOrder, setSortOrder] = useState("Last updated");
 
   const languages = useMemo(() => {
     const set = new Set<string>();
@@ -45,15 +45,15 @@ export default function RepositoriesPage() {
               .includes(searchFilter.toLowerCase()));
 
         const matchesLanguage =
-          languageFilter === 'All' || repo.language === languageFilter;
+          languageFilter === "All" || repo.language === languageFilter;
 
         return matchesSearch && matchesLanguage;
       })
       .sort((a, b) => {
-        if (sortOrder === 'Name') {
+        if (sortOrder === "Name") {
           return a.name.localeCompare(b.name);
         }
-        if (sortOrder === 'Stars') {
+        if (sortOrder === "Stars") {
           return b.stargazersCount - a.stargazersCount;
         }
         return (
@@ -71,16 +71,11 @@ export default function RepositoriesPage() {
             Repositorios
           </h1>
           <p className="text-[#cbc3d7] mt-1 text-xs tracking-wider">
-            <span className="text-[#d0bcff] font-bold">{repositories.length}</span> REPOSITORIOS TOTALES ADMINISTRADOS PARA @{currentUsername.toUpperCase()}
+            <span className="text-[#d0bcff] font-bold">
+              {repositories.length}
+            </span>{" "}
+            REPOSITORIOS TOTALES
           </p>
-        </div>
-        <div className="flex gap-2">
-          <a href="https://github.com/new" target="_blank" rel="noreferrer">
-            <Button variant="gradient">
-              <Plus className="w-4 h-4" />
-              NUEVO REPOSITORIO
-            </Button>
-          </a>
         </div>
       </header>
 
@@ -122,7 +117,9 @@ export default function RepositoriesPage() {
                 onChange={(e) => setSortOrder(e.target.value)}
                 className="appearance-none bg-[#181b25] border border-[#30363D]/40 rounded-lg px-4 py-2 pr-8 text-xs font-medium text-[#cbc3d7] focus:border-[#8B5CF6] transition-colors cursor-pointer outline-none min-w-[170px]"
               >
-                <option value="Last updated">Orden: Última actualización</option>
+                <option value="Last updated">
+                  Orden: Última actualización
+                </option>
                 <option value="Name">Orden: Nombre</option>
                 <option value="Stars">Orden: Estrellas</option>
               </select>
@@ -150,13 +147,13 @@ export default function RepositoriesPage() {
           </h2>
           <p className="text-[#cbc3d7] text-sm max-w-md text-center">
             {error?.message ||
-              'No se pudieron consultar los repositorios en la API.'}
+              "No se pudieron consultar los repositorios en la API."}
           </p>
           <div className="flex gap-4 pt-2">
             <Button variant="gradient" onClick={() => refetch()}>
               Reintentar
             </Button>
-            <Button variant="glass" onClick={() => setUsername('bleiwis')}>
+            <Button variant="glass" onClick={() => setUsername("bleiwis")}>
               Ver perfil principal (@bleiwis)
             </Button>
           </div>
