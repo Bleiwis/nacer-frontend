@@ -6,8 +6,6 @@ import { Avatar } from '../atoms/Avatar';
 import { Button } from '../atoms/Button';
 import { ContactModal } from '../molecules/ContactModal';
 import {
-  UserPlus,
-  UserCheck,
   Mail,
   Building,
   MapPin,
@@ -21,12 +19,7 @@ interface ProfileHeroProps {
 }
 
 export const ProfileHero: React.FC<ProfileHeroProps> = ({ user }) => {
-  const [isFollowing, setIsFollowing] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
-
-  const handleFollowClick = () => {
-    setIsFollowing((prev) => !prev);
-  };
 
   return (
     <>
@@ -46,24 +39,25 @@ export const ProfileHero: React.FC<ProfileHeroProps> = ({ user }) => {
             }}
           />
         </div>
-        <div className="px-6 pb-6 flex flex-col md:flex-row items-end gap-4 -mt-16 relative z-10">
+
+        <div className="px-6 pb-6 flex flex-col items-center text-center md:items-end md:text-left md:flex-row gap-4 -mt-16 relative z-10">
           <Avatar
             src={user.avatarUrl}
             alt={user.name || user.username}
             size="xl"
-            className="border-4 border-[#0a0e17] shadow-xl w-32 h-32 shrink-0"
+            className="border-4 border-[#0a0e17] shadow-xl w-32 h-32 shrink-0 rounded-full"
           />
           <div className="flex-1 pb-2 w-full">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="flex flex-col items-center text-center md:items-start md:text-left md:flex-row md:justify-between gap-4">
               <div>
                 <h1 className="text-3xl text-white font-extrabold tracking-tight">
                   {user.name || user.username}
                 </h1>
-                <p className="text-[#cbc3d7] font-mono text-sm">
+                <p className="text-[#cbc3d7] font-mono text-sm mt-0.5">
                   @{user.username}
                 </p>
               </div>
-              <div className="flex gap-2 flex-wrap">
+              <div className="flex gap-2 flex-wrap justify-center md:justify-start">
                 {/* Botón Mensaje abriendo modal Mailto */}
                 <Button variant="gradient" onClick={() => setIsContactOpen(true)}>
                   <Mail className="w-4 h-4 text-white" />
@@ -85,6 +79,7 @@ export const ProfileHero: React.FC<ProfileHeroProps> = ({ user }) => {
             </div>
           </div>
         </div>
+
         <div className="px-6 py-5 border-t border-[#30363D]/40">
           <div className="grid md:grid-cols-3 gap-6">
             <div>

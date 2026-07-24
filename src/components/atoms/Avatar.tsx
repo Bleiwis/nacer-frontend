@@ -22,7 +22,7 @@ export const Avatar: React.FC<AvatarProps> = ({
 
   return (
     <div
-      className={`rounded-xl overflow-hidden border border-outline-variant/30 ${sizeClasses[size]} ${className}`}
+      className={`rounded-full overflow-hidden border border-outline-variant/30 ${sizeClasses[size]} ${className}`}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={src} alt={alt} className="w-full h-full object-cover" />
