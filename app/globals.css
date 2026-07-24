@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .glass {
+    background: rgba(22, 27, 34, 0.8) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(48, 54, 61, 0.5) !important;
+  }
+  .glass-hover:hover {
+    border-color: rgba(139, 92, 246, 0.4) !important;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.1) !important;
+  }
+  .violet-gradient {
+    background: linear-gradient(135deg, #8B5CF6 0%, #6d3bd7 100%) !important;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.3) !important;
+  }
+}
+
+:root {
+  --background: #090D16;
+  --foreground: #dfe2ef;
+}
+
+body {
+  background-color: #090D16 !important;
+  color: #dfe2ef !important;
+  font-family: var(--font-geist-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
